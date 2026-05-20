@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/banner.png" alt="VibeTube — auto-pause YouTube when you look away" />
+</p>
+
 # VibeTube
 
 Auto-pause YouTube when you look away from the screen. Look back — it plays again.
