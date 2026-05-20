@@ -1,47 +1,47 @@
 # VibeTube
 
-Автоматическая пауза YouTube, когда отвернулся от экрана. Посмотрел обратно — играет дальше.
+Auto-pause YouTube when you look away from the screen. Look back — it plays again.
 
-Когда делаешь много задач параллельно на нескольких мониторах разом — видео крутится на одном экране, работа на других.
+Built for juggling a bunch of tasks at once across multiple monitors — video lives on one screen, work on the others.
 
-Особенно полезен **вайбкодерам**: пока модель что-то крутит — смотришь видосики. Модель задала вопрос — поворачиваешься в чат отвечать, видео само ставится на паузу. Ответил, глянул обратно — играет дальше.
+Especially handy for **vibecoders**: while the model is doing its thing, you watch videos. Model asks a question — you turn to the chat to reply, the video pauses on its own. Reply sent, glance back — it's playing again.
 
-## Что делает
+## What it does
 
-- Отвернулся ~4 секунды → пауза. Посмотрел обратно → играет
-- Ручная пауза/плей (клик, пробел) всегда приоритетнее
-- Иконка-глаз в плеере включает/выключает. Состояние запоминается между сессиями
-- Распознавание лица — локально через [pico.js](https://github.com/nenadmarkus/picojs)
+- Look away for ~4 seconds → pause. Look back → plays
+- Manual pause/play (click, spacebar) always wins
+- Eye icon in the player toggles it on/off. State persists across sessions
+- Face detection runs locally via [pico.js](https://github.com/nenadmarkus/picojs)
 
-## Установка
+## Install
 
-1. Поставь [Tampermonkey](https://www.tampermonkey.net/) в браузер
-2. Открой ссылку: **[vibetube.user.js](https://raw.githubusercontent.com/NIK-TIGER-BILL/vibetube/main/vibetube.user.js)** — Tampermonkey предложит установить
-3. Открой любое YouTube видео → кликни иконку-глаз в контролах плеера → разреши доступ к камере
+1. Install [Tampermonkey](https://www.tampermonkey.net/) in your browser
+2. Open this link: **[vibetube.user.js](https://raw.githubusercontent.com/NIK-TIGER-BILL/vibetube/main/vibetube.user.js)** — Tampermonkey will offer to install
+3. Open any YouTube video → click the eye icon in the player controls → grant camera permission
 
-Tampermonkey сам подтягивает обновления из этого репозитория.
+Tampermonkey auto-pulls updates from this repo.
 
-## Приватность
+## Privacy
 
-Всё крутится локально в браузере.
+Everything runs locally in your browser.
 
-- Ни кадры, ни детекции, ни телеметрия не уходят с твоей машины
-- Сетевой запрос — один: загрузка файла каскада для распознавания лица с jsDelivr (CDN). После этого — ноль трафика
-- Поток с камеры читает только встроенный детектор и (опционально) окно превью
+- No frames, no detections, no telemetry leave your machine
+- One network request total — fetching the face-detection cascade from jsDelivr (a CDN). After that, zero traffic
+- The camera stream is consumed only by the built-in detector and (optionally) the preview window
 
-Проверить можно глазами — это ~700 строк простого JavaScript в [vibetube.user.js](./vibetube.user.js).
+You can read it yourself — it's ~700 lines of plain JavaScript in [vibetube.user.js](./vibetube.user.js).
 
-## Контролы
+## Controls
 
-В правой части контролов плеера появляются две иконки:
+Two icons appear on the right side of the player controls:
 
-| Иконка | Что делает |
+| Icon | What it does |
 |---|---|
-| Камера | Показать/скрыть окошко превью (160×120 в правом нижнем углу — что видит детектор) |
-| Глаз | Включить/выключить VibeTube |
+| Camera | Show/hide the preview window (160×120 in the bottom-right — what the detector sees) |
+| Eye | Toggle VibeTube on/off |
 
-Зелёная точка на глазе = лицо обнаружено (видео играет / возобновится). Жёлтая = лицо не обнаружено (через несколько секунд видео встанет на паузу).
+Green dot on the eye = face detected (video is playing / will resume). Yellow = no face (video will pause in a few seconds).
 
-## Лицензия
+## License
 
-MIT — см. [LICENSE](./LICENSE).
+MIT — see [LICENSE](./LICENSE).
